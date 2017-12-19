@@ -38,8 +38,8 @@ $ npm install
 $ npm start
 ```
 
-- Build `npm run build`
-- Create Installer `npm run setup`
+- Build: **`npm run build`**
+- Create Installer: **`npm run setup`**
 
 ## Send changes
 
