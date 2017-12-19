@@ -1,13 +1,13 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "KhanChat",
+  "version": "1.1.0",
+  "description": "Simple chat javascript",
   "engines": {
     "node": "8.9.1"
   },
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -p -r sass-watch http-server webpack-server",
+    "start": "npm-run-all -p -r sass-watch http-server",
     "test": "node test.js",
     "http-server": "nodemon index.js",
     "webpack-server": "webpack --watch",
