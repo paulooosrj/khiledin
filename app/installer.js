@@ -1,18 +1,25 @@
-const electronInstaller = require('electron-winstaller');
+const createWindowsInstaller = require('electron-winstaller').createWindowsInstaller
+const path = require('path')
 
-let settings = {
-    appDirectory: './build/khanchat-win32-ia32',
-    outputDirectory: './build/installer',
+getInstallerConfig()
+  .then(createWindowsInstaller)
+  .catch((error) => {
+    console.error(error.message || error)
+    process.exit(1)
+  })
+
+function getInstallerConfig () {
+  console.log('creating windows installer')
+  const rootPath = path.join('./')
+  const outPath = path.join(rootPath, 'build')
+
+  return Promise.resolve({
+    appDirectory: path.join(outPath, 'khanchat-win32-ia32/'),
     authors: 'PaulaoDev',
-    description: 'Chat modern and fast.',
-    name: 'khanchat',
-    title:  'Khanchat system chat modern.',
-    setupIcon: './assets/icon.ico',
-    setupExe: 'khanchat.exe',
-    noMsi: false,
-    exe: 'khanchat.exe'
-};
-
-resultPromise = electronInstaller.createWindowsInstaller(settings);
- 
-resultPromise.then(() => console.log("It worked!"), (e) => console.log(`No dice: ${e.message}`));
+    noMsi: true,
+    outputDirectory: path.join(outPath, 'windows-installer'),
+    exe: 'khanchat.exe',
+    setupExe: 'khanchatInstaller.exe',
+    setupIcon: path.join(rootPath, 'assets', 'icon.ico')
+  })
+}
