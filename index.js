@@ -1,80 +1,35 @@
 const express = require('express');
+const compression = require('compression');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+global.io = require('socket.io')(server);
 const path = require('path');
-const fs = require('fs')
+global.fs = require('fs')
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 5000;
+global.fileUpload = require('express-fileupload');
 const session = require('express-session');
 const minify = require('express-minify');
+global.bots = require('./public/src/js/modules/bots/bots');
+global.Crawler = require("crawler");
 
-
+app.set('port', process.env.PORT || 5000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(fileUpload());
+app.use(compression());
 app.use(minify());
 app.use(express.static('public'));
+app.use(cookieParser());
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+	'secret': 'chat-do-paulao',
+	'resave': false,
+	'saveUninitialized': true
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-	res.render('index', {
-    'title': 'Meu Titulo'
-  });
-});
+const routes = require('./vendor/routes')(app, __dirname);
+const sockets = require('./vendor/sockets')(io);
 
-app.get('/room', (req, res) => {
-  res.render('room');
-});
-
-io.on('connection', function (socket) {
-
-
-  //socket.emit('news', { hello: 'world' });
-  socket.on('login', function (data) {
-    console.log(data.nome + " entrou na sala.");
-    let e = Object.assign({}, data, {
-        'my_id': socket.id
-    });
-    io.emit('new login', e);
-  });
-
-  socket.on('clear', function (data) {
-    console.log(data + " limpou a mensagem.");
-    io.emit('new clear', data);
-  });
-
-  socket.on('escrevendo', function (data) {
-    console.log(data.nome + " esta escrevendo.");
-    io.emit('new escrevendo', data);
-  });
-
-  socket.on('emit message', function (data) {
-    console.log('Emit message: ' + data.text);
-    io.emit('new emit message', data);
-  });
-
-  socket.on('chat', function (data) {
-    const channels = Object.keys(data);
-    channels.map((channel) => {
-      console.log('Emit channel ' + channel);
-      console.log(data[channel]);
-      io.emit(channel, data[channel]);
-    });
-  });
-
-  socket.on('desconectou', (data) => {
-    io.emit('logout', data);
-  });
-
-});
-
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-/**/
+server.listen(app.get('port'), () => console.log(`Listening on ${ app.get('port') }`));

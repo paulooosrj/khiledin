@@ -1,0 +1,22 @@
+@media only screen and (max-width: 500px) {
+
+	.container{
+		padding: 0px !important;
+    	margin: 0px !important;
+    	display: flex !important;
+    	justify-content: center !important;
+	   	align-items: center !important;
+	   	flex-direction: column !important;
+	   	max-width: 100% !important;
+	}
+
+	.form{
+		width: 80% !important;
+		border-radius: 3px;
+	    height: 60vh;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	}
+
+}

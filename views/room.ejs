@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>KhanChat</title>
-	<link rel="shootcut icon" href="https://avatars0.githubusercontent.com/u/29682878?s=460&v=4">
+	<link rel="shootcut icon" href="src/images/icon.png">
 	<link rel="stylesheet" href="src/css/min/painel.css">
-	<link rel="stylesheet" href="src/css/min/menu.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="src/css/min/emojione.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="src/css/min/menu.css">
+	<link rel="stylesheet" href="src/css/min/mobile.css">
+	<link rel="stylesheet" href="src/css/min/font-awesome.css">
 </head>
 <body>
 
@@ -17,16 +20,21 @@
 	</div>
 	
 	<script src="../socket.io/socket.io.js"></script>
+	<script src="src/js/min/emojione.js"></script>
+	<script src="src/js/min/lodash.js"></script>
+	<script src="src/js/min/jquery.js"></script>
+	<script src="src/js/min/electron.js"></script>
 	<script src="src/js/min/chat.js"></script>
 	<script>
 
 		const socket = io();
-		const $ = document.querySelector.bind(document);
-
+		const user = <%- user -%>;
 		// Template
 		const chat = {
 			'peoples': 1,
 			'messages': 0,
+			'peoples_add': ['Junior Bot'],
+			'end_message': '',
 			'messages_receive_user': [],
 			'lang': 'pt-br'
 		};

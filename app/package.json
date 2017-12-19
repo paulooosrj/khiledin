@@ -1,0 +1,23 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./main.js",
+    "build": "electron-packager . khanchat --overwrite --platform=win32 --arch=ia32 --icon=./assets/icon.ico --version-string.ProductName=khanchat --out=build",
+    "setup": "node ./installer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PaulaoDev",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.7.9",
+    "electron-installer-windows": "^0.2.0",
+    "electron-packager": "^10.1.0",
+    "electron-winstaller": "^2.6.3"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  }
+}

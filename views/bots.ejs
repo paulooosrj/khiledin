@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>KhanChat</title>
+	<link rel="shootcut icon" href="src/images/icon.png">
+	<link rel="stylesheet" href="../src/css/min/view-bot.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>	
+
+	<div class="app view">
+		<div class="box">
+			<div class="card" style="width: 20rem;height:70vh;" v-for="bot in bots" v-if="!bot.visible">
+				<img class="card-img-top" :src="bot.icon" v-if="bot.icon">
+				<img class="card-img-top" src="../src/images/new-bot-user.png" v-else>
+				<div class="card-block">
+					<h4 class="card-title">Bot: {{ bot.nome }}</h4>
+					<p class="card-text" style="font-size:15px" v-if="bot.desc">{{ bot.desc }}</p>
+					<p class="card-text" style="font-size:15px" v-else>{{ bot.nome }} Está sem nenhuma descrição.</p>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item" v-if="bot.on"> 
+							Cluster: Online <span class="on"></span>
+						</li>
+						<li class="list-group-item" v-else>
+							Cluster: Offline <span class="off"></span>
+						</li>
+						<li class="list-group-item">
+							Tamanho: <code> {{ bot.size }} kb</code>
+						</li>
+						<li class="list-group-item">
+							Eventos: <code>[{{bot.eventos}}];</code>
+						</li>
+					</ul>
+					<div class="card-block">
+						<a :href="bot.url" class="card-link" target="__blank">Minha Pagina</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="../src/js/min/bots.js"></script>
+
+</body>
+</html>

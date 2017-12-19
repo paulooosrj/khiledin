@@ -1,0 +1,158 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:300";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	height: 100vh;
+	background: #5C258D;
+	background: -webkit-linear-gradient(to right, #4389A2, #5C258D);
+	background: linear-gradient(to right, #4389A2, #5C258D);
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.login-page {
+	width: 100% !important;
+    height: 90vh!important;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.template {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	position: relative;
+	z-index: 1;
+	background: #FFFFFF;
+	width: 300px;
+	padding: 45px;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	input {
+		font-family: "Roboto", sans-serif;
+		outline: 0;
+		background: #f2f2f2;
+		width: 100%;
+		border: 0;
+		margin: 0 0 15px;
+		padding: 15px;
+		box-sizing: border-box;
+		font-size: 14px;
+		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	}
+	button {
+		font-family: "Roboto", sans-serif;
+		text-transform: uppercase;
+		outline: 0;
+		background: #4CAF50;
+		width: 100%;
+		border: 0;
+		padding: 15px;
+		color: #FFFFFF;
+		font-size: 14px;
+		-webkit-transition: all 0.3 ease;
+		transition: all 0.3 ease;
+		cursor: pointer;
+		&:hover {
+			background: #43A047;
+		}
+		&:active {
+			background: #43A047;
+		}
+		&:focus {
+			background: #43A047;
+		}
+	}
+	.message {
+		margin: 15px 0 0;
+		color: #b3b3b3;
+		font-size: 12px;
+		a {
+			color: #4CAF50;
+			text-decoration: none;
+		}
+	}
+	.register-form {
+		display: none;
+	}
+}
+
+.btn-file {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	input[type=file] {
+		position: absolute;
+		top: 0;
+		right: 0;
+		min-width: 100%;
+		min-height: 100%;
+		font-size: 100px;
+		text-align: right;
+		filter: alpha(opacity=0);
+		opacity: 0;
+		outline: none;
+		background: white;
+		cursor: inherit;
+		display: block;
+	}
+}
+
+.container {
+	position: relative;
+	z-index: 1;
+	max-width: 300px;
+	margin: 0 auto;
+	&:before {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	&:after {
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.info {
+		margin: 50px auto;
+		text-align: center;
+		h1 {
+			margin: 0 0 15px;
+			padding: 0;
+			font-size: 36px;
+			font-weight: 300;
+			color: #1a1a1a;
+		}
+		span {
+			color: #4d4d4d;
+			font-size: 12px;
+			a {
+				color: #000000;
+				text-decoration: none;
+			}
+			.fa {
+				color: #EF3B3A;
+			}
+		}
+	}
+}
+
+.btn-file-up {
+	width: 100%;
+	color: #fff;
+	background: #614385;
+	background: -webkit-linear-gradient(to right, #614385, #516395);
+	background: linear-gradient(to right, #614385, #516395);
+}
