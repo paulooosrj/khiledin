@@ -13,7 +13,7 @@ const banir = (id, server) => {
 
 const init = (hash, server) => {
 	$('.emit-message').val('');
-	if(btoa(hash) === "Y2hhdGRvcGF1bGFv"){
+	if(btoa(hash) === "key"){
 		chat.bot_input = true;
 		$('.emit-message').attr('placeholder', 'Bot input iniciado com sucesso.');
 	}
