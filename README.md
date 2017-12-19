@@ -4,7 +4,7 @@
 # KhanChat
 
 - Design Responsive.
-- KhanChat application for windows [download](#).
+- KhanChat application for windows <a href="http://www.mediafire.com/file/3cjgi87990673el/khanchatInstaller.zip" target="_blank">download</a>
 - <a href="https://bit.ly/khanchat" target="_blank">Chat Online</a>
 
 ## Tecnologies used in project
