@@ -5,7 +5,7 @@
 
 - Design Responsive.
 - KhanChat application for windows [download](#).
-- [Online](https://bit.ly/khanchat)
+- <a href="https://bit.ly/khanchat" target="_blank">Chat Online</a>
 
 ## Tecnologies used in project
 
