@@ -1,39 +1,46 @@
-# node-js-getting-started
+<p align="center"><img src="https://i.imgur.com/Gf4XaXO.png" alt="KhanChat" width="500px"/></p>
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+# KhanChat
+
+- Design Responsive.
+- KhanChat application for windows [download](#).
+- <a href="https://bit.ly/khanchat" target="_blank">Chat Online</a>
+
+## Tecnologies used in project
+
+- Webpack ( babel-loader, javascript minify )
+- Vuejs ( Render bots cards )
+- Ecmascript 6 ( Utilized news features does javascript )
+- NodeJS
+- Sass ( scss files )
+- Ejs ( View render engine )
+- Websockets ( Realtime does comunication )
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
+Make sure you have [Node.js](http://nodejs.org/).
 
 ```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+$ git clone git@github.com:PaulaoDev/KhanChat.git # or clone your own fork
+$ cd KhanChat
 $ npm install
 $ npm start
 ```
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+## Change KhanApp build in electron
 
 ```
-$ heroku create
-$ git push heroku master
-$ heroku open
+$ cd KhanChat/app
+$ npm install
+$ npm start
 ```
-or
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+- Build: **`npm run build`**
+- Create Installer: **`npm run setup`**
 
-## Documentation
+## Send changes
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+**Send us your pull request with your modification or adjustment in the application**
