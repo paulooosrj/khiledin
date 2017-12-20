@@ -1,6 +1,9 @@
 const Schema = (schema) => {
 
 	Object.prototype.map = function(call = function(){}){
+		if (typeof this !== 'object') {
+			return false
+		}
 		let indexes = Object.keys(this);
 		Object.values(this).map((value, index) => call(indexes[index], value));
   	};
