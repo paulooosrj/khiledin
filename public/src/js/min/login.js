@@ -1,1 +1,468 @@
-!function(b){function c(e){if(d[e])return d[e].exports;var f=d[e]={i:e,l:!1,exports:{}};return b[e].call(f.exports,f,f.exports,c),f.l=!0,f.exports}var d={};c.m=b,c.c=d,c.d=function(b,d,e){c.o(b,d)||Object.defineProperty(b,d,{configurable:!1,enumerable:!0,get:e})},c.n=function(a){var b=a&&a.__esModule?function(){return a.default}:function(){return a};return c.d(b,"a",b),b},c.o=function(a,b){return Object.prototype.hasOwnProperty.call(a,b)},c.p="",c(c.s=17)}({0:function(a){var b=Math.floor;a.exports={gen_id:()=>b(1e3*Math.random())+b(1e3*Math.random()),session:(a,b=null)=>null===b?sessionStorage.getItem(a)?sessionStorage.getItem(a):null:void(null!==b&&!sessionStorage.getItem(a)&&sessionStorage.setItem(a,b)),clear_input:()=>$(".emit-message").val(""),user_on_exists:(a,b="default")=>chat.peoples_add.includes(a.nome),to_scroll:()=>{var a=document.querySelector(".messages");$(".messages").animate({scrollTop:a.scrollHeight},"slow")},get_user:()=>({id:user.user_id,nome:user.nome,icon:user.icon}),get_horario:()=>{var b=new Date,c=(a)=>10>a?"0"+a:a,[d,e,a]=[c(b.getHours()),c(b.getMinutes()),c(b.getSeconds())];return d+":"+e+":"+a},html_element:function(a){var b=document.createElement("div");return b.innerHTML=a,b.firstChild},removerAcentos:function(b){var c=b,d={a:/[\xE0-\xE6]/g,A:/[\xC0-\xC6]/g,e:/[\xE8-\xEB]/g,E:/[\xC8-\xCB]/g,i:/[\xEC-\xEF]/g,I:/[\xCC-\xCF]/g,o:/[\xF2-\xF6]/g,O:/[\xD2-\xD6]/g,u:/[\xF9-\xFC]/g,U:/[\xD9-\xDC]/g,c:/\xE7/g,C:/\xC7/g,n:/\xF1/g,N:/\xD1/g};for(var e in d){var a=d[e];c=c.replace(a,e)}return c},bot_write:(b,c=[])=>{document.querySelector.bind(document);let d=1e4*c.length/c.length,e=0,a=c.length-1;setInterval(()=>{var d=c[e];b.innerHTML=d,++e>a&&(e=0)},d)}}},17:function(b,c,d){const{gen_id:f,session:a}=d(0),e=d(18);window.uploads=d(5),e({nome:"string",icon:"string"}),$(".btn-login").click((b)=>{b.preventDefault();let c={};var d=3<$(".nick").val().length?$(".nick").val():"Anonimo-"+Math.floor(1e4*Math.random());d&&(c.nome=d,c.id=f(),c.icon=a("icone")?a("icone"):"src/images/default-user.jpg",c.nome&&c.id&&c.icon&&((a)=>{$.post("../../../login",a,function(a){"success"===a.msg&&(location.href="/room")})})(c))}),$(".icon").change(()=>{let b=$(".icon").prop("files")[0];uploaded("../../../upload/imagem",b,function(b){"success"===b.msg&&(a("icone",b.path),$(".btn-file-up").html("Upload Feito"))})})},18:function(a){a.exports=(b)=>{Object.prototype.map=function(b=function(){}){let c=Object.keys(this);Object.values(this).map((d,e)=>b(c[e],d))};const c=new Map;return c.set("mail",(a)=>{return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(a)}),c.set("int",(a)=>"number"==typeof a&&Number.isInteger(a)),c.set("string",(a)=>"string"==typeof a&&""!==a),c.set("date",(a)=>a instanceof Date),c.set("json",(a)=>{try{JSON.parse(a)}catch(a){return!1}return!0}),c.set("array",(a)=>"object"==typeof a&&Array.isArray(a)),c.set("object",(a)=>"object"==typeof a&&!Array.isArray(a)&&null!==a),c.set("null",(a)=>null!==a),c.set("empty",(a)=>""!==a),function(a){return a.map((d,e)=>!!((d,e)=>{return(c.has(b[d])||Array.isArray(b[d]))&&(Array.isArray(b[d])?!b[d].map((a)=>c.get(a)(e)).includes(!1):c.get(b[d])(e))})(d,e)||(()=>{throw`Error in: ${d} value defined in Schema ${b[d]}`})()),!0}}},5:function(b,d,e){const{gen_id:f,session:a,clear_input:g,user_on_exists:h,to_scroll:j,get_user:i,get_horario:k}=e(0);window.uploaded=(b,c,d)=>{var e=new FormData;e.append("fileUpload",c),$.ajax({url:b,data:e,processData:!1,contentType:!1,type:"POST",success:d})},b.exports.image_upload=function(){$(this).parent().html("<label class=\"btn btn-file-upload\" style=\"cursor:pointer\">Image Upload<input type=\"file\" style=\"display: none;\" class=\"image-upload\" accept=\"image/*\"></label>"),$(".image-upload").change(function(){var a=$(this).prop("files")[0];uploaded("../../../upload/imagem",a,function(a){if("success"===a.msg){command_toggle();let b=`\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<img src="${a.path}" class="upload"/>\n\t\t\t\t`;socket.emit("emit message",Object.assign({},i(),{text:b,horario:k()}))}})})},b.exports.video_upload=function(){$(this).parent().html("<label class=\"btn btn-file-upload\" style=\"cursor:pointer\">Video Upload<input type=\"file\" style=\"display: none;\" class=\"video-upload\" accept=\"video/*\"></label>"),$(".video-upload").change(function(){var a=$(this).prop("files")[0];uploaded("../../../upload/video",a,function(a){if("success"===a.msg){command_toggle();let b=a.path.split(".").pop(),c=`\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<video class="video-upload upload" controls><source src="${a.path}" type="video/${b}"></video>\n\t\t\t\t`;socket.emit("emit message",Object.assign({},i(),{text:c,horario:k()}))}})})},b.exports.audio_upload=function(){$(this).parent().html("<label class=\"btn btn-file-upload\" style=\"cursor:pointer\">Audio Upload<input type=\"file\" style=\"display: none;\" class=\"video-upload\" accept=\"audio/*\"></label>"),$(".video-upload").change(function(){var a=$(this).prop("files")[0];uploaded("../../../upload/audio",a,function(a){if("success"===a.msg){command_toggle();let b=a.path.split(".").pop(),c=`\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<audio class="audio-upload upload" controls><source src="${a.path}" type="audio/${b}"></audio>\n\t\t\t\t`;socket.emit("emit message",Object.assign({},i(),{text:c,horario:k()}))}})})},b.exports.codigo_upload=function(){$(this).parent().html("<label class=\"btn btn-file-upload\" style=\"cursor:pointer\">Codigo Upload<input type=\"file\" style=\"display: none;\" class=\"code-upload\" accept=\".js,.html,.php,.css,.sass,.scss,.rb,.py,.ts,.c,.go,.rar\"></label>"),$(".code-upload").change(function(){var a=$(this).prop("files")[0];uploaded("../../../upload/arquivo",a,function(b){if("success"===b.msg){command_toggle();let d={js:"#f7df1e",php:"#4f5b93",rar:"#8e44ad",css:"#00a98f",html:"#e34f26",default:"#f39c12"},e=b.path.split(".").pop();var c=d[e]?d[e]:d.default;console.log(c);let a=`\n\t\t\t\t\t<a href="${b.path}" class="btn-link upload-up" style="background:${c};border:none;cursor:pointer;" download>Fazer download: ${b.path.split("/").pop()}</a>\t\n\t\t\t\t`;"rar"!==e&&(a=`\n\t\t\t\t\t\t<a class="btn-link" target="__blank" href="./code/${b.path.split("/").pop()}" style="border:none;background:#3498db;cursor:pointer;width:40%;">Visualizar Codigo</button>\n\t\t\t\t\t\t${a}\n\t\t\t\t\t`),socket.emit("emit message",Object.assign({},i(),{text:a,horario:k()}))}})})},b.exports.help_chat=function(){$(this).parent().html("<div class=\"helped\"><a href=\"mailto:jskhanframework@gmail.com?Subject=KhanChat\" target=\"__blank\"><div class=\"help-item\"><i class=\"fa fa-envelope fa-lg\" aria-hidden=\"true\"></i><p class=\"entry\">jskhanframework@gmail.com</p></div></a><a href=\"https://github.com/PaulaoDev\" target=\"__blank\"><div class=\"help-item\"><i class=\"fa fa-github fa-lg\" aria-hidden=\"true\"></i><p class=\"entry\">PaulaoDev</p></div></div></a>")}}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 0:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var gen_id = function gen_id() {
+  return Math.floor(Math.random() * 1000) + Math.floor(Math.random() * 1000);
+};
+
+var session = function session(name) {
+  var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+  if (value === null) {
+    if (sessionStorage.getItem(name)) {
+      return sessionStorage.getItem(name);
+    } else {
+      return null;
+    }
+  }
+  if (value !== null) {
+    if (!sessionStorage.getItem(name)) {
+      sessionStorage.setItem(name, value);
+    }
+  }
+};
+
+var clear_input = function clear_input() {
+  return $('.emit-message').val('');
+};
+
+var user_on_exists = function user_on_exists(p) {
+  var e = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
+
+  // document.querySelector(`.peoples-timeline>div[id="${p.id}"]`)
+  return chat.peoples_add.includes(p.nome);
+};
+
+var to_scroll = function to_scroll() {
+  var o = document.querySelector('.messages');
+  $('.messages').animate({ scrollTop: o.scrollHeight }, 'slow');
+};
+
+var get_user = function get_user() {
+  return {
+    'id': user.user_id,
+    'nome': user.nome,
+    'icon': user.icon
+  };
+};
+
+var get_horario = function get_horario() {
+  var horario = new Date();
+  var prefix = function prefix(h) {
+    return h < 10 ? "0" + h : h;
+  };
+  var _ref = [prefix(horario.getHours()), prefix(horario.getMinutes()), prefix(horario.getSeconds())],
+      hora = _ref[0],
+      minutos = _ref[1],
+      segundos = _ref[2];
+
+  return hora + ':' + minutos + ':' + segundos;
+};
+
+function html_element(html) {
+  var d = document.createElement('div');
+  d.innerHTML = html;
+  return d.firstChild;
+}
+
+function removerAcentos(newStringComAcento) {
+  var string = newStringComAcento;
+  var mapaAcentosHex = {
+    a: /[\xE0-\xE6]/g,
+    A: /[\xC0-\xC6]/g,
+    e: /[\xE8-\xEB]/g,
+    E: /[\xC8-\xCB]/g,
+    i: /[\xEC-\xEF]/g,
+    I: /[\xCC-\xCF]/g,
+    o: /[\xF2-\xF6]/g,
+    O: /[\xD2-\xD6]/g,
+    u: /[\xF9-\xFC]/g,
+    U: /[\xD9-\xDC]/g,
+    c: /\xE7/g,
+    C: /\xC7/g,
+    n: /\xF1/g,
+    N: /\xD1/g
+  };
+  for (var letra in mapaAcentosHex) {
+    var expressaoRegular = mapaAcentosHex[letra];
+    string = string.replace(expressaoRegular, letra);
+  }
+  return string;
+}
+
+var bot_write = function bot_write(out) {
+  var entrys = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+  var $ = document.querySelector.bind(document);
+  var cout = entrys.length * 10000 / entrys.length;
+  var active = 0;
+  var end = entrys.length - 1;
+  var w_bot = setInterval(function () {
+    var a = entrys[active];
+    out.innerHTML = a;
+    active++;
+    if (active > end) active = 0;
+  }, cout);
+};
+
+module.exports = {
+  gen_id: gen_id,
+  session: session,
+  clear_input: clear_input,
+  user_on_exists: user_on_exists,
+  to_scroll: to_scroll,
+  get_user: get_user,
+  get_horario: get_horario,
+  html_element: html_element,
+  removerAcentos: removerAcentos,
+  bot_write: bot_write
+};
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    gen_id = _require.gen_id,
+    session = _require.session;
+
+var schema = __webpack_require__(18);
+window.uploads = __webpack_require__(5);
+
+var schema_login = schema({
+  'nome': 'string',
+  'icon': 'string'
+});
+
+var success_login = function success_login(data) {
+  $.post('../../../login', data, function (res) {
+    if (res.msg === "success") location.href = '/room';
+  });
+};
+
+var login = function login(event) {
+  event.preventDefault();
+  var data = {};
+  var nome = $(".nick").val().length > 3 ? $(".nick").val() : "Anonimo-" + Math.floor(Math.random() * 10000);
+  if (nome) {
+    data.nome = nome;
+    data.id = gen_id();
+    if (!session("icone")) {
+      data.icon = "src/images/default-user.jpg";
+    } else {
+      data.icon = session('icone');
+    }
+    if (data.nome && data.id && data.icon) success_login(data);
+  }
+};
+
+var finish_upload = function finish_upload() {
+  $(".btn-file-up").html('Upload Feito');
+};
+
+var uploadFile = function uploadFile(o) {
+  var file = $('.icon').prop('files')[0];
+  uploaded('../../../upload/imagem', file, function (data) {
+    if (data.msg === "success") {
+      session("icone", data.path);
+      finish_upload();
+    }
+  });
+};
+
+$('.btn-login').click(login);
+$('.icon').change(uploadFile);
+
+/***/ }),
+
+/***/ 18:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var Schema = function Schema(schema) {
+
+	Object.prototype.map = function () {
+		var call = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
+
+		if (_typeof(this) !== 'object') {
+			return false;
+		}
+		var indexes = Object.keys(this);
+		Object.values(this).map(function (value, index) {
+			return call(indexes[index], value);
+		});
+	};
+
+	var types = new Map();
+	var is_valid = function is_valid(i, v) {
+		if (types.has(schema[i]) || Array.isArray(schema[i])) {
+			if (Array.isArray(schema[i])) {
+				var verify = schema[i].map(function (ind, s) {
+					return types.get(ind)(v);
+				});
+				return !verify.includes(false);
+			}
+			return types.get(schema[i])(v);
+		}
+		return false;
+	};
+	var filter_mail = function filter_mail(v) {
+		var prefix = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return prefix.test(v);
+	};
+	var filter_number = function filter_number(v) {
+		return typeof v === "number" && Number.isInteger(v);
+	};
+	var filter_string = function filter_string(v) {
+		return typeof v === "string" && v !== "";
+	};
+	var filter_date = function filter_date(v) {
+		return v instanceof Date;
+	};
+	var filter_array = function filter_array(v) {
+		return (typeof v === "undefined" ? "undefined" : _typeof(v)) === "object" && Array.isArray(v);
+	};
+	var filter_object = function filter_object(v) {
+		return (typeof v === "undefined" ? "undefined" : _typeof(v)) === "object" && !Array.isArray(v) && v !== null;
+	};
+	var filter_empty = function filter_empty(v) {
+		return v !== "";
+	};
+	var filter_null = function filter_null(v) {
+		return v !== null;
+	};
+	var filter_json = function filter_json(v) {
+		try {
+			JSON.parse(v);
+		} catch (e) {
+			return false;
+		}
+		return true;
+	};
+
+	types.set('mail', filter_mail);
+	types.set('int', filter_number);
+	types.set('string', filter_string);
+	types.set('date', filter_date);
+	types.set('json', filter_json);
+	types.set('array', filter_array);
+	types.set('object', filter_object);
+	types.set('null', filter_null);
+	types.set('empty', filter_empty);
+
+	return function (value) {
+		value.map(function (i, v) {
+			return !is_valid(i, v) ? function () {
+				throw "Error in: " + i + " value defined in Schema " + schema[i];
+			}() : true;
+		});
+		return true;
+	};
+};
+
+module.exports = Schema;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _require = __webpack_require__(0),
+    gen_id = _require.gen_id,
+    session = _require.session,
+    clear_input = _require.clear_input,
+    user_on_exists = _require.user_on_exists,
+    to_scroll = _require.to_scroll,
+    get_user = _require.get_user,
+    get_horario = _require.get_horario;
+
+window.uploaded = function (url, file, callback) {
+	var form = new FormData();
+	form.append('fileUpload', file);
+	$.ajax({
+		url: url,
+		data: form,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		success: callback
+	});
+};
+
+module.exports.image_upload = function () {
+	var tpl = '<label class="btn btn-file-upload" style="cursor:pointer">Image Upload<input type="file" style="display: none;" class="image-upload" accept="image/*"></label>';
+	$(this).parent().html(tpl);
+	$('.image-upload').change(function () {
+		var file = $(this).prop('files')[0];
+		uploaded('../../../upload/imagem', file, function (data) {
+			if (data.msg === "success") {
+				command_toggle();
+				var temp = '\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<img src="' + data.path + '" class="upload"/>\n\t\t\t\t';
+				socket.emit('emit message', Object.assign({}, get_user(), {
+					'text': temp,
+					'horario': get_horario()
+				}));
+			}
+		});
+	});
+};
+
+module.exports.video_upload = function () {
+	var tpl = '<label class="btn btn-file-upload" style="cursor:pointer">Video Upload<input type="file" style="display: none;" class="video-upload" accept="video/*"></label>';
+	$(this).parent().html(tpl);
+	$('.video-upload').change(function () {
+		var file = $(this).prop('files')[0];
+		uploaded('../../../upload/video', file, function (up) {
+			if (up.msg === "success") {
+				command_toggle();
+				var ext = up.path.split('.').pop();
+				var temp = '\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<video class="video-upload upload" controls><source src="' + up.path + '" type="video/' + ext + '"></video>\n\t\t\t\t';
+				socket.emit('emit message', Object.assign({}, get_user(), {
+					'text': temp,
+					'horario': get_horario()
+				}));
+			}
+		});
+	});
+};
+
+module.exports.audio_upload = function () {
+	var tpl = '<label class="btn btn-file-upload" style="cursor:pointer">Audio Upload<input type="file" style="display: none;" class="video-upload" accept="audio/*"></label>';
+	$(this).parent().html(tpl);
+	$('.video-upload').change(function () {
+		var file = $(this).prop('files')[0];
+		uploaded('../../../upload/audio', file, function (up) {
+			if (up.msg === "success") {
+				command_toggle();
+				var ext = up.path.split('.').pop();
+				var temp = '\n\t\t\t\t\t<button class="btn-link" onclick="apagar_luz(this)" style="border:none;background:#3498db;cursor:pointer">Apagar Luz</button>\n\t\t\t\t\t<audio class="audio-upload upload" controls><source src="' + up.path + '" type="audio/' + ext + '"></audio>\n\t\t\t\t';
+				socket.emit('emit message', Object.assign({}, get_user(), {
+					'text': temp,
+					'horario': get_horario()
+				}));
+			}
+		});
+	});
+};
+
+module.exports.codigo_upload = function () {
+	var tpl = '<label class="btn btn-file-upload" style="cursor:pointer">Codigo Upload<input type="file" style="display: none;" class="code-upload" accept=".js,.html,.php,.css,.sass,.scss,.rb,.py,.ts,.c,.go,.rar"></label>';
+	$(this).parent().html(tpl);
+	$('.code-upload').change(function () {
+		var file = $(this).prop('files')[0];
+		uploaded('../../../upload/arquivo', file, function (up) {
+			if (up.msg === "success") {
+				command_toggle();
+				var cores = {
+					"js": "#f7df1e",
+					"php": "#4f5b93",
+					"rar": "#8e44ad",
+					"css": "#00a98f",
+					"html": "#e34f26",
+					"default": "#f39c12"
+				};
+				var ext = up.path.split('.').pop();
+				var cor = cores[ext] ? cores[ext] : cores["default"];
+				console.log(cor);
+				var temp = '\n\t\t\t\t\t<a href="' + up.path + '" class="btn-link upload-up" style="background:' + cor + ';border:none;cursor:pointer;" download>Fazer download: ' + up.path.split('/').pop() + '</a>\t\n\t\t\t\t';
+				if (ext !== "rar") {
+					temp = '\n\t\t\t\t\t\t<a class="btn-link" target="__blank" href="./code/' + up.path.split('/').pop() + '" style="border:none;background:#3498db;cursor:pointer;width:40%;">Visualizar Codigo</button>\n\t\t\t\t\t\t' + temp + '\n\t\t\t\t\t';
+				}
+				socket.emit('emit message', Object.assign({}, get_user(), {
+					'text': temp,
+					'horario': get_horario()
+				}));
+			}
+		});
+	});
+};
+
+module.exports.help_chat = function () {
+	var tpl = '<div class="helped"><a href="mailto:jskhanframework@gmail.com?Subject=KhanChat" target="__blank"><div class="help-item"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i><p class="entry">jskhanframework@gmail.com</p></div></a><a href="https://github.com/PaulaoDev" target="__blank"><div class="help-item"><i class="fa fa-github fa-lg" aria-hidden="true"></i><p class="entry">PaulaoDev</p></div></div></a>';
+	$(this).parent().html(tpl);
+};
+
+/***/ })
+
+/******/ });
