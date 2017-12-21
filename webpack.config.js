@@ -1,7 +1,6 @@
-const webpack = require('webpack')
-const {
-    join
-} = require('path')
+const webpack = require('webpack');
+const ENV = "production";
+const { join } = require('path')
 
 module.exports = {
     context: __dirname,
@@ -15,15 +14,15 @@ module.exports = {
     output: {
         path: join(__dirname, 'public', 'src', 'js', 'min'),
         filename: '[name].js'
-    }/*,
-    plugins: [
+    },
+    plugins: ((ENV === "production") ? [
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
             uglifyOptions: {
                 ecma: 8
             }
         })
-    ]*/,
+    ] : []),
     module: {
         rules: [{
             test: /\.(js)$/,

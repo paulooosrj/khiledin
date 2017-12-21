@@ -1,4 +1,6 @@
 /* TWO PART */
+$box-flat-1: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+
 div {
 	&::-webkit-scrollbar-track {
 		-webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -13,6 +15,8 @@ div {
 		background-color: #263443;
 	}
 }
+
+
 .menu {
 	width: 30%;
 	height: 100%;
@@ -59,14 +63,16 @@ div {
 }
 .two {
 	height: 85vh;
+	display: flex;
+	flex-direction: column;
 }
 .peoples {
 	width: 100%;
-	height: 83%;
+	height: 65%;
 }
 .peoples-timeline {
 	width: 100%;
-	height: 83%;
+	height: 75%;
 	overflow-y: scroll;
 	.people {
 		&:hover {
@@ -75,6 +81,49 @@ div {
 		}
 	}
 }
+
+.sala-create{
+	width: 100%;
+	height: 12vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	#btn-linked{
+		width: 70%;
+		height: 50px;
+		border: none;
+		background: #3498db;
+		border-radius: 3px;
+		margin-left: 15px;
+		color: #fff;
+		cursor: pointer;
+	}
+	.create-sala,.create-sala-build{
+		background: #3498db;
+		height: 50px;
+		width: 50px;
+		border-radius: 100%;
+		border: none;
+		color: white;
+		margin-left: 20px;
+		transition: all 1s ease;
+		cursor: pointer;
+		outline: none;
+		&:hover{
+			transition: all 1s ease;
+			box-shadow: $box-flat-1;
+		}
+	}
+	.sala-name{
+		width: 70%;
+		height: 50px;
+		border: none;
+		padding-left: 10px;
+		border-radius: 3px;
+		margin-left: 10px;
+	}
+}
+
 .ons-agora {
 	color: #bdc3c7d4;
 	padding: 35px;

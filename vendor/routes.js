@@ -6,9 +6,17 @@ module.exports = (app, __dirname) => {
 	  });
 	});
 
-	app.get('/room', (req, res) => {
+	app.get('/s/:sala', (req, res) => {
+		let fullUrl = req.protocol + '://' + req.get('host');
+		console.log('redir: '+ fullUrl + '/room/' + req.params.sala);
+		res.redirect(fullUrl + '/room/' + req.params.sala);
+	});
+
+	app.get('/room/:sala?', (req, res) => {
+	  let fullUrl = req.protocol + '://' + req.get('host');
+	  let sala = req.params.sala || "global";
 	  let session = req.session;
-	  if(!req.session.user_id) res.redirect('./');
+	  if(!req.session.user_id) res.redirect(fullUrl);
 	  if(session.nome && session.icon && session.user_id){
 	  	  let user = {
 			'nome': session.nome,
@@ -17,7 +25,9 @@ module.exports = (app, __dirname) => {
 		  };
 		  res.render('room', {
 		    'bots': bots,
-		    'user': JSON.stringify(user)
+		    'user': JSON.stringify(user),
+		    'sala': sala,
+		    'url': fullUrl
 		  });
 	  }
 	});
@@ -57,21 +67,6 @@ module.exports = (app, __dirname) => {
 	 		if(err) throw err;
 	 		res.redirect('/');
 		});
-	});
-
-	app.post('/crawler', (request, response) => {
-		var data = {"msg": "error"};
-		var c = new Crawler({
-		    rateLimit: 1000,
-		    callback: function(err, res, done){
-		        data.title = res.$("title").text();
-		        data.icon = res.$('link[rel="icon"]').attr('href');
-		        data.msg = "success";
-		     	response.send(JSON.stringify(data));
-		        done();
-		    }
-		});
-		c.queue(request.body.site);
 	});
 
 	// Rotas POST

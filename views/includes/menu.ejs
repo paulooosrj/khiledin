@@ -17,7 +17,7 @@
 						<div class="people" id="junior-bot-user">
 			              <span class="status-active"></span>
 			              <p class="name">Junior Bot</p>
-			              <img src="src/images/junior.png" alt="" class="my-icon">
+			              <img src="<%- url -%>/src/images/junior.png" alt="" class="my-icon">
 			              <div class="user-message">
 			              	<span class="arrow-user"></span>
 			              	<div class="text-user">Diz oi pra mim</div>
@@ -25,15 +25,20 @@
 			            </div>
 					</div>
 				</div>
+				<div class="sala-create">
+					<button class="create-sala">
+						<i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+					</button>
+				</div>
 				<a href="./bots" class="ons-agora" target="__blank" style="text-decoration:none">ROBOS ONLINES</a>
 				<div class="bots-ons">
 				  <% bots.forEach(function(bot){ %>
 				  	<a href="./bot/<%- bot.id -%>" target="__blank">
 					  	<span class="on-bot">
 					  	  	<% if(bot.icon){ %>
-							   <img src="<%- bot.icon -%>" style="width:30px;height:30px;border-radius:100%">
+							   <img src="<%- url -%>/<%- bot.icon -%>" style="width:30px;height:30px;border-radius:100%">
 							 <% } else{ %>  
-							   <img src="src/images/new-bot-user.png" style="width:30px;height:30px;border-radius:100%">
+							   <img src="<%- url -%>/src/images/new-bot-user.png" style="width:30px;height:30px;border-radius:100%">
 							<% } %>
 						</span>
 					</a>
