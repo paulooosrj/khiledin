@@ -1,6 +1,6 @@
-const { 
-	gen_id, 
-	session, 
+const {
+	gen_id,
+	session,
 	clear_input,
 	user_on_exists,
 	to_scroll,
@@ -58,8 +58,8 @@ $(".emit-message").keypress(function(e){
     	});
 		status_write = true
 	}
-	if(e.keyCode === 13 && message.length > 3 && message.length < 500){
-		socket.emit('chat', {[chat.sala + "clear"]: node});
+	if(e.keyCode === 13 && message.length >= 1 && message.length < 500){
+		socket.emit('clear', node)
 		message = bot_filter.run(message)
 		if(message !== ''){
 			$('.emojis').css('display', 'none')
