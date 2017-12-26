@@ -39,7 +39,9 @@ window.payload_event = function(e){
 		d.nome = d.bot.nome
 		d.icon = d.bot.icone
 		d.text = bot_filter.run(d.payload)
-		socket.emit('emit message', d)
+		socket.emit('chat', {
+        	[chat.sala + "message"]: d
+    	});
 	}
 }
 
@@ -47,11 +49,13 @@ $(".emit-message").keypress(function(e){
 	var node = `[write-id="${get_user()['id']}"]`
 	var message = filtros.bot_strip_tags($(".emit-message").val())
 	if(status_write === false){
-		socket.emit('escrevendo', Object.assign({}, get_user(), {
-			'text': get_user()['nome'] + ' está escrevendo.',
-			'horario': get_horario(),
-			'node': node
-		}))
+		socket.emit('chat', {
+        	[chat.sala + "escrevendo"]: Object.assign({}, get_user(), {
+				'text': get_user()['nome'] + ' está escrevendo.',
+				'horario': get_horario(),
+				'node': node
+			})
+    	});
 		status_write = true
 	}
 	if(e.keyCode === 13 && message.length >= 1 && message.length < 500){
@@ -59,10 +63,12 @@ $(".emit-message").keypress(function(e){
 		message = bot_filter.run(message)
 		if(message !== ''){
 			$('.emojis').css('display', 'none')
-			socket.emit('emit message', Object.assign({}, get_user(), {
-				'text': message,
-				'horario': get_horario()
-			}))
+			socket.emit('chat', {
+				[chat.sala + "message"]: Object.assign({}, get_user(), {
+					'text': message,
+					'horario': get_horario()
+				})
+			});
 			status_write = false
 			clear_input()
 		}
@@ -71,10 +77,12 @@ $(".emit-message").keypress(function(e){
 
 $('.logout').click(function(){
 	var rm = (i) => sessionStorage.removeItem(i)
-	socket.emit('desconectou', get_user())
+	socket.emit('chat', {
+		[chat.sala + "logout"]: get_user()
+	});
 	rm('icone')
 	rm('my_id')
-	setTimeout(() => location.href = './logout', 500)
+	setTimeout(() => location.href = chat.url + 'logout', 500)
 })
 
 $('.open-emoji').click(emoji_toggle)
@@ -93,4 +101,33 @@ $('.menu-toggle').click(function(){
 		$(this).html(`<i class="fa fa-bars fa-lg" aria-hidden="true"></i>`)
 		$('.menu').css('display', 'none')
 	}
-})
+});
+
+$('.create-sala').click(function(){
+	if(chat.sala_create) return false;
+	chat.sala_create = true;
+	$(this).css('background', '#2ecc71');
+	$(this).removeClass('create-sala');
+	$(this).addClass('create-sala-build');
+	$(this).html(`<i class="fa fa-check fa-lg" aria-hidden="true"></i>`);
+	$('.sala-create').append(`
+		<input type="text" placeholder="Nome da sala para criar" class="sala-name"/>
+	`);
+	$('.create-sala-build').click(function(){
+		if(chat.sala_create_build) return false;
+		chat.sala_create_build = true;
+		var v = $('.sala-name').val();
+		if(v.length < 2 && v === "") return false;
+		var name_sala = v.trim().replace(/\s/, '-');
+		$('.sala-name').css('display', 'none');
+		$('.sala-create').append(`
+			<button class="btn" id="btn-linked" data-clipboard-text="${chat.url + 's/' + name_sala}">Copiar link da Sala</button>
+		`);
+		var clipboard = new Clipboard('#btn-linked');
+		clipboard.on('success', function(e) {
+		    $('.sala-create .btn').html('Sala copiada com sucesso');
+		    $("#btn-linked").css('background', '#2ecc71');
+		    e.clearSelection();
+		});
+	});
+});

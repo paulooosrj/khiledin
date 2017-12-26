@@ -23,7 +23,9 @@ const icon = "src/images/junior.png";
 const build_bot = (data, receive) => {
 	var test = validate(receive, data);
 	if(receive === "hello init") data.init = true;
+	data.return = false;
 	if(test){
+		data.return = true;
 		data.text = test.trim();
 	}
 	data.text = bot_filter.run(data.text);
@@ -64,20 +66,20 @@ const callback = (event, data, server) => {
 	}
 	if(Object.keys(data).includes('is_bot') === false && event === 'message'){
 		data = build_bot(data, receive);
-		if(data.text !== ''){
+		if(data.text !== '' && data.return){
 			server.emit('escrevendo', data);
 			setTimeout(() => {
-					server.emit('emit message', data);
+					server.emit('message', data);
 					server.emit('clear', data.node);
 			}, 1000);
 		}
 	}
 	if(Object.keys(data).includes('is_bot') === false && event === 'login'){
 		data = build_bot(data, 'hello init');
-		if(data.text !== ''){
+		if(data.text !== '' && data.return){
 			server.emit('escrevendo', data);
 			setTimeout(() => {
-					server.emit('emit message', data);
+					server.emit('message', data);
 					server.emit('clear', data.node);
 			}, 1000);
 		}

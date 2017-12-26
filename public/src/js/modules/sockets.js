@@ -14,9 +14,11 @@ const bot_remove = filtros.bot_remove;
 
 module.exports = (socket) => {
 
-    socket.emit('login', get_user());
+    socket.emit('chat', {
+        [chat.sala + "login"]: get_user()
+    });
 
-    socket.on('new login', (data) => {
+    socket.on(chat.sala + "login", (data) => {
 
         chat.messages++;
         if(!user_on_exists(data)) chat.peoples++;
@@ -41,7 +43,7 @@ module.exports = (socket) => {
 
     });
 
-    socket.on('new emit message', (data = {}) => {
+    socket.on(chat.sala + "message", (data = {}) => {
         data.text = emojione.toImage(data.text);
         console.log(chat.end_message.includes(data.text));
         if(!chat.end_message.includes(data.text)){
@@ -56,18 +58,18 @@ module.exports = (socket) => {
         }
     });
 
-    socket.on('new clear', (node) => {
+    socket.on(chat.sala + "clear", (node) => {
         bot_remove(node);
     });
 
-    socket.on('new escrevendo', (data) => {
+    socket.on(chat.sala + "escrevendo", (data) => {
         if(!document.querySelector(data.node)){
             $('.messages').append(templates().message_write(data));
             to_scroll();
         }
     });
 
-    socket.on('new banido', (user) => {
+    socket.on(chat.sala + "banido", (user) => {
         user.text = `${user.nome} foi banido da sala.`;
         user.horario = get_horario();
         let data = user;
@@ -78,11 +80,12 @@ module.exports = (socket) => {
         }
     });
 
-    socket.on('logout', (user) => {
+    socket.on(chat.sala + 'logout', (user) => {
         $('.messages').append(templates().logout(Object.assign({}, user, {
             'horario': get_horario()
         })));
         bot_remove(`.peoples-timeline>div[id="${user.id}"]`);
+        to_scroll();
     });
 
 };

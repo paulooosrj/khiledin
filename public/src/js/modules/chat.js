@@ -2,13 +2,6 @@ module.exports = class {
 
 	constructor(socket){
 		this.server = socket;
-		this.events = {
-			'login': 'new login', 
-			'message': 'new emit message', 
-			'clear': 'new clear', 
-			'write': 'new escrevendo', 
-			'logout': 'logout'
-		};
 		this.config();
 	}
 
@@ -31,29 +24,42 @@ module.exports = class {
 		this.config.bots = [];
 	}
 
-	on_event(name, data){
-		var self = this;
-		this.config.bots.map((bot) => {
-			if(bot.events.includes(name)){
-				bot.call(name, data, self.server);
-			}
-		});
-	}
-
 	attach_on(){
 		var self = this;
 		this.config.bots.map((bot) => {
 			if(bot.events.includes('on')){
-				bot.call('on', {}, self.server);
+				var server = {
+					emit(ev, data){
+						self.server.emit("chat", {
+							[chat.sala + ev]: data
+						});
+					},
+					on(ev, call){
+						self.server.on(chat.sala + ev, call);
+					}
+				};
+				bot.call('on', {}, server);
 			}
 		});
 	}
 
 	run(){
 		var self = this;
-		Object.keys(self.events).map((channel) => {
-			self.server.on(self.events[channel], (data) => {
-				self.on_event(channel, data);
+		this.config.bots.map((bot) => {
+			bot.events.map((e) => {
+				self.server.on(chat.sala + e, function(data){
+					var server = {
+						emit(ev, data){
+							self.server.emit("chat", {
+								[chat.sala + ev]: data
+							});
+						},
+						on(ev, call){
+							self.server.on(chat.sala + ev, call);
+						}
+					};
+					bot.call(e, data, server);
+				});
 			});
 		});
 		this.attach_on();

@@ -13,7 +13,7 @@ const templates = () => {
             <div class="people" id="${data.id}">
               <span class="status-active"></span>
               <p class="name">${data.nome}</p>
-              <img src="${data.icon}" alt="" class="my-icon">
+              <img src="${chat.url + data.icon}" alt="" class="my-icon">
               <div class="user-message"></div>
             </div>
       `,
@@ -23,7 +23,7 @@ const templates = () => {
           return $(`
               <div id="${data.id}" class="message">
                 <div class="user">
-                  <img src="${data.icon}" alt="">
+                  <img src="${chat.url + data.icon}" alt="">
                 </div>
                 <span class="arrow"></span> 
                 <div class="body">
@@ -64,7 +64,7 @@ const templates = () => {
           return $(`
               <div id="${data.id}" class="message">
                 <div class="user">
-                  <img src="${data.icon}" alt="">
+                  <img src="${chat.url + data.icon}" alt="">
                 </div>
                 <span class="arrow"></span> 
                 <div class="body">
@@ -79,7 +79,7 @@ const templates = () => {
           return $(`
             <div write-id="${data.id}" class="message">
               <div class="user">
-                <img src="${data.icon}" alt="">
+                <img src="${chat.url + data.icon}" alt="">
               </div>
               <span class="arrow"></span> 
               <div class="body">
