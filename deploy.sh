@@ -1,7 +1,7 @@
 #!/bin/sh
 ###########################
     # add all added/modified files
-    git add -A
+    git add .
     # commit changes
     git commit -am "made changes"
     # push to git remote repository
