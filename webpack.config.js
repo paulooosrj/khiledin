@@ -1,47 +1,32 @@
-//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
-const BabiliPlugin = require("babili-webpack-plugin");
-const Uglify = require("uglifyjs-webpack-plugin");
-const StripWhitespace = require('strip-whitespace-plugin');
+const ENV = "dev";
+const { join } = require('path')
 
 module.exports = {
     context: __dirname,
     watch: true,
     devtool: false,
     entry: {
-        app: "./public/src/js/app.js",
-        login: "./public/src/js/login.js",
-        bots: "./public/src/js/bots.js"/**/
+        app: './public/src/js/app.js',
+        login: './public/src/js/login.js',
+        bots: './public/src/js/bots.js'
     },
     output: {
-        path: __dirname + "/public/src/js/min",
-        filename: "[name].js"
+        path: join(__dirname, 'public', 'src', 'js', 'min'),
+        filename: '[name].js'
     },
-    plugins: [
-        new MinifyPlugin({}, {
-            sourceMap: false,
-            comments: false,
-            mangle: { topLevel: true }
-        }),
-        new Uglify({
-            sourceMap: false,
-            output: {
-                comments: false
+    plugins: ((ENV === "production") ? [
+        new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            uglifyOptions: {
+                ecma: 8
             }
-        }),
-        new BabiliPlugin({}, {
-            sourceMap: false,
-            comments: false,
-            mangle: { topLevel: true }
-        }),
-        new StripWhitespace()
-    ],
+        })
+    ] : []),
     module: {
-        loaders: [{
+        rules: [{
             test: /\.(js)$/,
-            loader: "babel-loader"
-          }
-        ]
+            loader: 'babel-loader'
+        }]
     }
 };

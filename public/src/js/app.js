@@ -1,3 +1,6 @@
+const bot = require('make-bot');
+console.log(bot);
+
 const { 
 	gen_id, 
 	session, 
