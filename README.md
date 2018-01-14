@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<p align="center"><img src="https://i.imgur.com/Gf4XaXO.png" alt="KhanChat" width="500px"/></p>
+<p align="center"><img src="https://i.imgur.com/pQmDgjB.png" alt="KhanChat" width="500px"/></p>
 
 
 # KhanChat
@@ -92,4 +91,3 @@ $ npm start
 ## Send changes
 
 **Send us your pull request with your modification or adjustment in the application**
->>>>>>> 837f5ca07b1d8f9fbefac2cd9301058fe174b4cd
