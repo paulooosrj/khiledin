@@ -1,158 +1,98 @@
-@import "https://fonts.googleapis.com/css?family=Roboto:300";
-
-* {
-	margin: 0;
-	padding: 0;
+.input-field {
+  label {
+    color: #999;
+  }
+  input {
+    &[type=text]:focus + label, &[type=password]:focus + label {
+      color: #000;
+    }
+    &[type=text]:focus, &[type=password]:focus {
+      border-bottom: 1px solid #000;
+      box-shadow: 0 1px 0 0 #000;
+    }
+    &[type=text].valid, &[type=password].valid {
+      border-bottom: 1px solid #2196F3;
+      box-shadow: 0 1px 0 0 #2196F3;
+    }
+    &[type=text].invalid, &[type=password].invalid {
+      border-bottom: 1px solid #F44336;
+      box-shadow: 0 1px 0 0 #F44336;
+    }
+  }
+  .prefix.active {
+    color: #000;
+  }
 }
 
-body {
-	width: 100%;
-	height: 100vh;
-	background: #5C258D;
-	background: -webkit-linear-gradient(to right, #4389A2, #5C258D);
-	background: linear-gradient(to right, #4389A2, #5C258D);
-	font-family: "Roboto", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+/* Input : switch */
+
+.switch {
+  margin-top: 7px;
+  label {
+    .lever {
+      margin: 0 7px;
+    }
+    input[type="checkbox"]:checked + .lever {
+      background-color: #ADD0EB;
+      &::after {
+        background-color: #4FB0FD;
+      }
+    }
+  }
 }
 
-.login-page {
-	width: 100% !important;
-    height: 90vh!important;
-    display: flex;
-	align-items: center;
-	justify-content: center;
+.login-body {
+  background-image: url(http://i.imgur.com/aBayW5C.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-.template {
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.input-cart {
+  min-height: 400px;
+  border-top: 3px solid #2196F3;
+  margin-top: 80px;
+  margin-bottom: 100px;
 }
 
-.form {
-	position: relative;
-	z-index: 1;
-	background: #FFFFFF;
-	width: 300px;
-	padding: 45px;
-	text-align: center;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-	input {
-		font-family: "Roboto", sans-serif;
-		outline: 0;
-		background: #f2f2f2;
-		width: 100%;
-		border: 0;
-		margin: 0 0 15px;
-		padding: 15px;
-		box-sizing: border-box;
-		font-size: 14px;
-		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	}
-	button {
-		font-family: "Roboto", sans-serif;
-		text-transform: uppercase;
-		outline: 0;
-		background: #4CAF50;
-		width: 100%;
-		border: 0;
-		padding: 15px;
-		color: #FFFFFF;
-		font-size: 14px;
-		-webkit-transition: all 0.3 ease;
-		transition: all 0.3 ease;
-		cursor: pointer;
-		&:hover {
-			background: #43A047;
-		}
-		&:active {
-			background: #43A047;
-		}
-		&:focus {
-			background: #43A047;
-		}
-	}
-	.message {
-		margin: 15px 0 0;
-		color: #b3b3b3;
-		font-size: 12px;
-		a {
-			color: #4CAF50;
-			text-decoration: none;
-		}
-	}
-	.register-form {
-		display: none;
-	}
+.login {
+  margin-top: 25px;
+  border-right: 1px solid #ddd;
 }
 
-.btn-file {
-	width: 100%;
-	position: relative;
-	overflow: hidden;
-	input[type=file] {
-		position: absolute;
-		top: 0;
-		right: 0;
-		min-width: 100%;
-		min-height: 100%;
-		font-size: 100px;
-		text-align: right;
-		filter: alpha(opacity=0);
-		opacity: 0;
-		outline: none;
-		background: white;
-		cursor: inherit;
-		display: block;
-	}
+.policy {
+  visibility: hidden;
 }
 
-.container {
-	position: relative;
-	z-index: 1;
-	max-width: 300px;
-	margin: 0 auto;
-	&:before {
-		content: "";
-		display: block;
-		clear: both;
-	}
-	&:after {
-		content: "";
-		display: block;
-		clear: both;
-	}
-	.info {
-		margin: 50px auto;
-		text-align: center;
-		h1 {
-			margin: 0 0 15px;
-			padding: 0;
-			font-size: 36px;
-			font-weight: 300;
-			color: #1a1a1a;
-		}
-		span {
-			color: #4d4d4d;
-			font-size: 12px;
-			a {
-				color: #000000;
-				text-decoration: none;
-			}
-			.fa {
-				color: #EF3B3A;
-			}
-		}
-	}
+.signupForm {
+  display: none;
 }
 
-.btn-file-up {
-	width: 100%;
-	color: #fff;
-	background: #614385;
-	background: -webkit-linear-gradient(to right, #614385, #516395);
-	background: linear-gradient(to right, #614385, #516395);
+.signup {
+  margin-top: 25px;
+}
+
+.signup-toggle {
+  cursor: pointer;
+  margin-top: 140px;
+}
+
+.login h4, .signup h4 {
+  font-weight: 200;
+}
+
+.legal {
+  border-top: 1px solid #ddd;
+}
+
+.email label {
+  margin-left: 11px;
+}
+
+.policy {
+  font-size: 13px;
+}
+
+.main-title {
+  font-family: pacifico;
 }

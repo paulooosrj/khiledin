@@ -1,50 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KhanChat</title>
-	<link rel="shootcut icon" href="src/images/icon.png">
-	<link rel="stylesheet" href="src/css/min/painel.css">
-	<link rel="stylesheet" href="src/css/min/emojione.css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="src/css/min/menu.css">
-	<link rel="stylesheet" href="src/css/min/mobile.css">
-	<link rel="stylesheet" href="src/css/min/font-awesome.css">
-</head>
-<body>
-
-	<div class="container">
-		<% include includes/timeline.ejs %>
-		<% include includes/menu.ejs %>
-	</div>
-	
-	<script src="../socket.io/socket.io.js"></script>
-	<script src="src/js/min/emojione.js"></script>
-	<script src="src/js/min/lodash.js"></script>
-	<script src="src/js/min/jquery.js"></script>
-	<script src="src/js/min/electron.js"></script>
-	<script src="src/js/min/chat.js"></script>
-	<script>
-
-		const socket = io();
-		const user = <%- user -%>;
-		// Template
-		const chat = {
-			'peoples': 1,
-			'messages': 0,
-			'peoples_add': ['Junior Bot'],
-			'end_message': '',
-			'messages_receive_user': [],
-			'lang': 'pt-br'
-		};
-
-	</script>
-	<script src="src/js/min/app.js"></script>
-
-</body>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,10 +7,12 @@
 	<link rel="shootcut icon" href="<%- url -%>/src/images/icon.png">
 	<link rel="stylesheet" href="<%- url -%>/src/css/min/painel.css">
 	<link rel="stylesheet" href="<%- url -%>/src/css/min/emojione.css">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Raleway|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="<%- url -%>/src/css/min/menu.css">
 	<link rel="stylesheet" href="<%- url -%>/src/css/min/mobile.css">
 	<link rel="stylesheet" href="<%- url -%>/src/css/min/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="<%- url -%>/src/css/min/spinner.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
 </head>
 <body>
 
@@ -79,6 +34,7 @@
 		// Template 
 		const chat = {
 			'url': "<%- url -%>/",
+			'sala_origin': '<%- sala -%>',
 			'sala': "sala-<%- sala -%>-",
 			'peoples': 1,
 			'messages': 0,
@@ -92,5 +48,4 @@
 	<script src="<%- url -%>/src/js/min/app.js"></script>
 
 </body>
->>>>>>> 837f5ca07b1d8f9fbefac2cd9301058fe174b4cd
 </html>

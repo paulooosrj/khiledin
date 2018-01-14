@@ -1,6 +1,11 @@
 const global = window;
 
+global.command_toggle_hide = () => {
+	$('.commands').css('display', 'none');
+};
+
 global.command_toggle = () => {
+	emoji_hide();
 	$('.commands').toggle(function(){
 		if($(this).css('display') === "block"){
 			$(this).css('display', 'flex');
@@ -39,10 +44,18 @@ global.renderize_emoji = () => {
 	});
 };
 
+global.emoji_hide = () => {
+	$('.emojis').css('display', 'none');
+};
+
 global.emoji_toggle = () => {
+	command_toggle_hide();
 	$('.emojis').toggle(function(){
 		if($(this).css('display') === "block"){
+			$(this).addClass('slideInUp animated');
 			$(this).css('display', 'flex');
+		}else{
+			$(this).addClass('slideInDown animated');
 		}
 	});
 };

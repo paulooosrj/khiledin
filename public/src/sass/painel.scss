@@ -6,7 +6,7 @@
 .container {
 	width: 100% !important;
 	height: 100vh !important;
-	background: #34495e !important;
+	background: #F5F9E9 !important;
 	display: flex !important;
 	justify-content: center !important;
 	align-items: center !important;
@@ -20,11 +20,11 @@
 	.head {
 		width: 100%;
 		height: 15vh;
-		background: #f4f4f4;
+		background: #62929E;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+		color: #F5F9E9;
 		.item {
 			height: 100%;
 			width: calc(100%/3);
@@ -69,8 +69,8 @@
 		color: #f4f4f4;
 		background: transparent;
 		img {
-			width: 50px;
-			height: 52px;
+			width: 40px;
+			height: 42px;
 			border-radius: 100%;
 			margin-left: 20px;
 			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -86,16 +86,23 @@
 		color: #ecf0f1;
 		background: #48569E;
 		border-radius: 5px;
+		.body-user{
+			width: 90%;
+		    display: flex;
+		    justify-content: flex-start;
+		    align-items: center;
+		    padding-left: 2px;
+			padding-top: 10px;
+			padding-bottom: 3px;
+			font-family: 'Lato', sans-serif;
+		}
 		.name-user {
 			display: flex;
 			justify-content: flex-start;
-			padding-left: 2px;
-			padding-top: 10px;
-			padding-bottom: 3px;
-			width: 90%;
+			width: auto;
 			align-items: center;
 			font-size: 15px;
-			font-weight: 300;
+			font-weight: bold;
 		}
 		.text {
 			width: 90%;
@@ -104,6 +111,8 @@
 			flex-wrap: wrap;
 			overflow-x: hidden;
 			word-wrap: break-word;
+			padding-bottom: 15px;
+    		padding-top: 5px;
 			font-size: 14px;
 			font-family: -apple-technique, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 			img.upload{
@@ -129,14 +138,12 @@
 			}
 		}
 		.time {
-			width: 100%;
 			display: flex;
 			justify-content: flex-end;
 			color: #bdc3c7;
-			margin-top: 5px;
-			margin-bottom: 10px;
-			margin-right: 20px;
 			font-size: 13px;
+			margin-left: 10px;
+			font-family: 'Open Sans', sans-serif;
 		}
 	}
 }
@@ -183,7 +190,7 @@
 .emit {
 	width: 100%;
 	height: 15vh;
-	background: #263443;
+	background: #62929E;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -192,7 +199,7 @@
 		height: 50%;
 		background: #f4f4f447;
 		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-		border-radius: 3px;
+		border-radius: 25px;
 		color: #fff;
 		i {
 			padding-left: 25px;
@@ -200,7 +207,7 @@
 			cursor: pointer;
 		}
 		input {
-			width: 80%;
+			width: 75%;
 			height: 100%;
 			background: transparent;
 			border: none;
@@ -243,10 +250,21 @@ img.emojione {
 	justify-content: center;
 }
 
+.emojis{
+	background: #416788;
+	border-radius: 5px;
+	left: 33%;
+	margin-bottom: 10px;
+}
+
 .commands{
 	left: 0 !important;
 	min-height: 10vh !important;
 	height: auto;
+	background: #416788;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	border-radius: 10px;
 }
 
 .commands>i{
@@ -256,12 +274,15 @@ img.emojione {
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	transition: all 1s ease;
+	transition: all .5s ease-in;
+	font-size: 17px;
+	color: #f5f5f5;
 }
 
 .commands>i:hover{
-	transition: all 1s ease;
-	background: #48569e;
+	transition: all .5s ease-in;
+	color: #313638;
+	font-size: 20x;
 }
 
 .emoji-icon {
@@ -348,7 +369,7 @@ img.emojione {
 }
 
 .helped{
-	height: 30vh;
+	height: 20vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -365,7 +386,7 @@ img.emojione {
     }
     .help-item{
     	    background: #263443;
-		    height: 10vh;
+		    height: 8vh;
 		    width: 75%;
 		    display: flex;
 		    justify-content: space-around;

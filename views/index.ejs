@@ -1,50 +1,37 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta http-equiv="content-language" content="pt-br, en-US, fr" />
+	<meta name="copyright" content="© 2018 PaulaoDev" />
+	<meta name="description" content="Chat simples porem com novas tecnologias proporcionando um melhor conforto de uso."/>
+	<meta name="keywords" content="chat moderno, chat, khanchat, PaulaoDev, Khanchat, khanchat paulaodev"/>
+	<meta name="rating" content="general"/>
+	<meta name="robots" content="all"/>
+	<!-- CACHE -->
+	<meta http-equiv="cache-control" content="cache" /> 
+	<meta http-equiv="expires" content="Mon, 22 jul 2006 11:12:01 GMT"/>
+	<!-- END CACHE -->
 	<title>KhanChat</title>
+	<% include includes/preload_login.ejs %>
 	<link rel="shootcut icon" href="src/images/icon.png">
-	<link rel="stylesheet" href="src/css/min/login-mobile.css">
-	<link rel="stylesheet" href="src/css/min/login.css">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Pacifico">
+	<link rel="stylesheet" href="src/css/min/login.css"> 
 </head>
-<body>
+<body class="login-body">
 
-	<div class="container">
-		<% include includes/login.ejs %>
-		<% include includes/copyright.ejs %>
-	</div>
+	<% include includes/login.ejs %>
 	
-	<script src="src/js/min/jquery.js"></script>
-	<script src="src/js/min/electron.js"></script>
-	<script src="src/js/min/login.js"></script>
+	<script src="src/js/min/jquery.js" defer></script>
+	<script src="src/js/min/materialize.js" defer></script>
+	<!-- 
+		
+		<script src="http://materializecss.com/bin/materialize.js"></script> 
+	-->
+	<script src="src/js/min/electron.js" defer></script>
+	<script src="src/js/min/login.js" defer></script>
 
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>KhanChat</title>
-	<link rel="shootcut icon" href="src/images/icon.png">
-	<link rel="stylesheet" href="src/css/min/login-mobile.css">
-	<link rel="stylesheet" href="src/css/min/login.css">
-	<link rel="stylesheet" href="src/css/min/bootstrap.css">
-</head>
-<body>
-
-	<div class="container">
-		<% include includes/login.ejs %>
-		<% include includes/copyright.ejs %>
-	</div>
-	
-	<script src="src/js/min/jquery.js"></script>
-	<script src="src/js/min/electron.js"></script>
-	<script src="src/js/min/login.js"></script>
-
-</body>
->>>>>>> 837f5ca07b1d8f9fbefac2cd9301058fe174b4cd
 </html>
