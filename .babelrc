@@ -1,8 +1,3 @@
-<<<<<<< HEAD
 {
     "presets": ["env"]
-=======
-{
-  "presets": ["env"]
->>>>>>> 837f5ca07b1d8f9fbefac2cd9301058fe174b4cd
 }
