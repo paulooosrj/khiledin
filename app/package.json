@@ -14,13 +14,13 @@
   "author": "PaulaoDev",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.7.9",
-    "electron-installer-windows": "^0.2.0",
-    "electron-packager": "^10.1.0",
+    "electron": "^2.0.8",
+    "electron-installer-windows": "^1.1.0",
+    "electron-packager": "^12.1.1",
     "electron-winstaller": "^2.6.3"
   },
   "dependencies": {
-    "electron-builder": "^19.49.0",
+    "electron-builder": "^20.28.4",
     "electron-squirrel-startup": "^1.0.0"
   }
 }
