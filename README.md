@@ -3,6 +3,9 @@
 
 # KhanChat
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/PaulaoDev/KhanChat.svg)](https://greenkeeper.io/)
+
+
 - Design Responsive.
 - KhanChat application for windows [download](#).
 - <a href="https://bit.ly/khanchat" target="_blank">Chat Online</a>
