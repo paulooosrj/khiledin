@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>KhanChat</title>
+	<link rel="shootcut icon" href="src/images/icon.png">
+	<link rel="stylesheet" href="../src/css/min/view-bot.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>	
+	
+	<div class="view">
+
+		<div class="box" khan-controller="index">
+			{{ $bots.map((bot) => (!bot.visible) ? $makeBot(bot) : '').join('') }}
+		</div>
+
+	</div>
+
+	<script src="../src/js/khan-framework.js"></script>
+	<script src="../src/js/min/bots.js"></script>
+	<script>
+
+		const App = khanApp.create();
+
+		App.$controller('index', function($scope){
+
+		    this.bots = bots;
+		    this.makeBot = function(bot){
+		    	return `
+					<div class="card" style="width: 20rem;height:70vh;">
+						<img class="card-img-top" src="${ bot.icon || "../src/images/new-bot-user.png" }">
+						<div class="card-block">
+							<h4 class="card-title">Bot: ${ bot.nome }</h4>
+							<p class="card-text" style="font-size:15px">
+								${ bot.desc || bot.nome + " nao tem descrição." }
+							</p>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item"> 
+									${
+										(bot.on) 
+										? 'Cluster: Online <span class="on"></span>'
+										: 'Cluster: Offline <span class="off"></span>'
+									}
+								</li>
+								<li class="list-group-item">
+									Tamanho: <code> ${ bot.size } kb</code>
+								</li>
+								<li class="list-group-item">
+									Eventos: <code>[${bot.eventos}];</code>
+								</li>
+							</ul>
+							<div class="card-block">
+								<a href="${bot.url}" class="card-link" target="__blank">Minha Pagina</a>
+							</div>
+						</div>
+					</div>
+		    	`;
+		    };
+		  
+		});
+
+	</script>
+
+
+</body>
+</html>

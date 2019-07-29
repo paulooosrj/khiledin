@@ -1,0 +1,50 @@
+<div id="app" class="container-fluid d-flex justify-content-center align-items-center">
+	
+	<div class="row d-flex flex-column w-100">
+
+		<div class="col-12 d-flex justify-content-center align-items-center flex-column text-white">
+			<i class="fab fa-connectdevelop fa-2x mb-3"></i>
+			<h5>Khiledin Chat</h5>
+		</div>
+		
+		<!-- LOGIN -->
+		<div class="col-12 w-100 mt-3 pl-0 pr-0 d-flex justify-content-center align-items-center h-50" v-if="!register">
+			<div class="col-md-5 col-sm-12 bg-white rounded d-flex justify-content-center align-items-center flex-column h-100 form-login">
+				<p class="text-success" v-if="loginSuccess">Login foi realizado com sucesso!</p>
+				<p class="text-danger" v-if="loginError">Ocorreu um erro ao logar!</p>
+				<input type="text" class="form-control p-2 pl-3 inputsm" placeholder="Email" name="email" v-model="people.email">
+				<input type="password" class="form-control p-2 pl-3 mt-3 inputsm" placeholder="Senha" name="senha" v-model="people.senha"> 
+				<input type="submit" class="form-control btn-primary btn-lg mt-3" value="Login" @click="login">
+			</div>
+		</div>
+
+		<!-- REGISTER -->
+		<div class="col-12 w-100 mt-3 pl-0 pr-0 d-flex justify-content-center align-items-center h-75" v-if="register">
+			<div class="col-md-5 col-sm-12 bg-white rounded d-flex justify-content-center align-items-center flex-column h-100 form-register"><br/>
+				<p class="text-success" v-if="messageRegisterSuccess">O cadastro foi realizado com sucesso!</p>
+				<p class="text-danger" v-if="messageRegisterError">Ocorreu um erro ao cadastrar!</p>
+				<input type="text" class="form-control p-2 pl-3" id="inputsm" placeholder="Nome" name="username" v-model="people.nome">
+				<input type="text" class="form-control p-2 pl-3 mt-3 inputsm" placeholder="Email" name="email" v-model="people.email">
+				<input type="password" class="form-control p-2 pl-3 mt-3 inputsm" placeholder="Senha" name="senha" v-model="people.senha">
+				<label class="btn btn-primary btn-file-up mt-3 form-control" style="cursor:pointer;width:70%">
+                    {{ upload ? 'Imagem Escolhida' : 'Icone de Perfil' }}
+                    <input type="file" style="display: none;" class="icon" accept="image/*" @change="uploadImage">
+                </label>
+				<input type="submit" class="form-control btn-success btn-lg mt-3" value="Cadastrar" @click="userRegister"><br/>
+			</div>
+		</div>
+
+		<div class="col-12 d-flex justify-content-center align-items-center mt-3 login-helper">
+			<div class="row">
+				<p class="text-white col-xs-12">
+					{{ register ? 'Já possui uma conta?' : 'Nao Possui uma conta?' }}
+				</p>
+				<p class="ml-2 btn-register col-xs-12" @click="toggle">
+					{{ register ? 'Login' : 'Criar Agora' }}
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+</div>
