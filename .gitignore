@@ -3,10 +3,12 @@ node_modules/
 /dist/
 /app-desktop/
 /app/public/src/uploads/(imagem|arquivo|audio|video)/*
+/env/(local|prod)/.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.npmrc
 
 # Editor directories and files
 .idea

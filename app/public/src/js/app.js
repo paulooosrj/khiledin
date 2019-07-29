@@ -1,31 +1,6 @@
-import 'babel-polyfill';
+// /* Init Vue */
 
-const {
-	gen_id,
-	session,
-	clear_input,
-	user_on_exists,
-	to_scroll,
-	get_user,
-	get_horario
-} = require('./modules/utils');
-
-// window.bot = require('make-bot');
-if (location.protocol === 'https:'){
- 	location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
-}
-
-var status_write = false;
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-	document.querySelector('.load').style.display = "none";
-  // $(".menu-toggle").css("cssText", "display: flex !important;");
-
-});
-
-/* Init Vue */
+// import Vue from 'vue';
 
 // Vue.component('timeline', require('./vue/timeline.js'));
 
@@ -73,7 +48,33 @@ document.addEventListener("DOMContentLoaded", () => {
 //     }
 // });
 
-/* End Vue */
+// /* End Vue */
+
+const {
+	gen_id,
+	session,
+	clear_input,
+	user_on_exists,
+	to_scroll,
+	get_user,
+	get_horario
+} = require('./modules/utils');
+
+
+// window.bot = require('make-bot');
+if (location.protocol === 'https:'){
+ 	location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
+}
+
+var status_write = false;
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+	document.querySelector('.load').style.display = "none";
+  // $(".menu-toggle").css("cssText", "display: flex !important;");
+
+});
 
 const globals = require('./modules/globals')
 const speech = require('./use/speech');

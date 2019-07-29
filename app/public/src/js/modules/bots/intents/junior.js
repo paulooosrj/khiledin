@@ -33,7 +33,8 @@ neural.respond('(.*)(junior|junior bot) (eu|eu quero|quero) ouvir(.*?)').run(fun
 	genero = genero.trim();
 
   var api = async gen => {
-    let endpoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAcF9aLw26wtKi13sdvHhahfkrWh_4vXbE&q=${gen}&maxResults=5`;
+    const key = process.env.GOOGLE_API_KEY;
+    let endpoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${key}&q=${gen}&maxResults=5`;
     let request = await fetch(endpoint);
     request = await request.json();
     let i = request.items;
@@ -60,7 +61,8 @@ neural.respond('(.*)(junior|junior bot) (procurar|procurar no|buscar no) youtube
   genero = genero.trim();
 
   var api = async gen => {
-    let endpoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAcF9aLw26wtKi13sdvHhahfkrWh_4vXbE&q=${gen}&maxResults=5`;
+    const key = process.env.GOOGLE_API_KEY;
+    let endpoint = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=${key}&q=${gen}&maxResults=5`;
     let request = await fetch(endpoint);
     request = await request.json();
     let i = request.items;
@@ -88,11 +90,11 @@ neural.respond('(.*)(junior|junior bot) (o que e|me diz o que e) (.*?)').run(fun
 
   var api = async gen => {
     let endpoint = `https://cors-anywhere.herokuapp.com/http://pt.wikipedia.org/w/api.php?action=opensearch&search=${gen}&format=json`;
-    let pay = { 
-    	method: 'GET', 
+    let pay = {
+    	method: 'GET',
     	headers: new Headers({
   			"Content-Type": "application/json; charset=UTF-8"
-  		}) 
+  		})
     };
     let request = await fetch(endpoint, pay);
     request = await request.json();
