@@ -15,11 +15,20 @@
 </head>
 <body>
 
-	<div class="container" id="app">
-		<% include includes/menu.ejs %>
-	</div>
-	
-	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <div class="load">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
+
+	<div class="container">
+    <% include includes/menu.ejs %>
+  </div>
+
+  <div id="root"></div>
+
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+  <script src="<%- url -%>/socket.io/socket.io.js"></script>
+  <script src="<%- url -%>/src/js/min/emojione.js"></script>
+  <script src="<%- url -%>/src/js/min/jquery.js"></script>
 	<!-- <script src="<%- url -%>/socket.io/socket.io.js"></script>
 	<script src="<%- url -%>/src/js/min/emojione.js"></script>
 	<script src="<%- url -%>/src/js/min/clipboard.js"></script>
@@ -28,9 +37,9 @@
 	<script src="<%- url -%>/src/js/min/chat.js"></script> -->
 	<script>
 
-		//const socket = io();
+		const socket = io();
 		const user = <%- user -%>;
-		// Template 
+		// Template
 		const chat = {
 			'url': "<%- url -%>/",
 			'sala_origin': '<%- sala -%>',
@@ -41,7 +50,7 @@
 			'end_message': '',
 			'messages_receive_user': [],
 			'colors': {
-				get message_me(){ 
+				get message_me(){
 					if(localStorage.getItem('colors.message_me')){
 						return localStorage.getItem('colors.message_me');
 					}
@@ -64,8 +73,10 @@
 		};
 
 	</script>
-	<script src="<%- url -%>/src/js/min/react.js"></script>
-	<!-- <script src="<%- url -%>/src/js/min/app.js"></script> -->
+  <!-- <script src="<%- url -%>/src/js/min/react.js"></script> -->
+
+  <script src="<%- url -%>/src/js/min/react.js"></script>
+	<script src="<%- url -%>/src/js/min/app.js"></script>
 
 </body>
 </html>

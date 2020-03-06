@@ -33,11 +33,11 @@
 				<a href="./bots" class="ons-agora" target="__blank" style="text-decoration:none">ROBOS ONLINES</a>
 				<div class="bots-ons">
 				  <% bots.forEach(function(bot){ %>
-				  	<a href="./bot/<%- bot.id -%>" target="__blank">
+				  	<a href="../bot/<%- bot.id -%>" target="__blank">
 					  	<span class="on-bot">
 					  	  	<% if(bot.icon){ %>
 							   <img src="<%- url -%>/<%- bot.icon -%>" style="width:30px;height:30px;border-radius:100%">
-							 <% } else{ %>  
+							 <% } else{ %>
 							   <img src="<%- url -%>/src/images/new-bot-user.png" style="width:30px;height:30px;border-radius:100%">
 							<% } %>
 						</span>
