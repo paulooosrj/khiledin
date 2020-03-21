@@ -16,21 +16,21 @@ jobs:
       matrix:
         node-version: [10.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-      env:
-        CI: true
-    - name: Artifact
-    - uses: actions/checkout@v1
-    -  run: mkdir -p build/artifact
-    - run: npm audit --json > build/artifact/audit.json
-    - uses: actions/upload-artifact@v1
-      with:
-        name: audit
-        path: build/artifact
-    - name: Node Code Formatter
-      uses: MarvinJWendt/run-node-formatter@1.5.2
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+        env:
+          CI: true
+      - uses: actions/checkout@v1
+      - name: Artifact
+      - run: mkdir -p build/artifact
+      - run: npm audit --json > build/artifact/audit.json
+      - uses: actions/upload-artifact@v1
+        with:
+          name: audit
+          path: build/artifact
+      - name: Node Code Formatter
+      - uses: MarvinJWendt/run-node-formatter@1.5.2
