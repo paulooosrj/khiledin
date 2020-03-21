@@ -11,13 +11,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,3 +24,27 @@ jobs:
     - run: npm install
       env:
         CI: true
+  artifacts:
+    name: artifact
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job 1
+        uses: actions/download-artifact@v1
+        with:
+          name: homework
+      - shell: bash
+        run: |
+          npm audit --json > artifact.json
+      - name: Upload math result for job 2
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: artifacts/audit.json
+  quality:
+     name: quality
+     needs: artifacts
+     runs-on: ubuntu-latest
+     steps:
+        - name: Node Code Formatter
+          uses: MarvinJWendt/run-node-formatter@1.5.2
