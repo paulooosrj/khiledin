@@ -24,25 +24,13 @@ jobs:
     - run: npm install
       env:
         CI: true
-  artifacts:
-    name: artifact
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download math result for job 1
-        uses: actions/download-artifact@v1
-      - shell: bash
-        run: |
-          npm audit --json > artifact.json
-      - name: Upload math result for job 2
-        uses: actions/upload-artifact@v1
-        with:
-          name: artifact
-          path: artifacts/audit.json
-  quality:
-     name: quality
-     needs: artifacts
-     runs-on: ubuntu-latest
-     steps:
-        - name: Node Code Formatter
-          uses: MarvinJWendt/run-node-formatter@1.5.2
+    - name: Artifact
+    - uses: actions/checkout@v1
+    -  run: mkdir -p build/artifact
+    - run: npm audit --json > build/artifact/audit.json
+    - uses: actions/upload-artifact@v1
+      with:
+        name: audit
+        path: build/artifact
+    - name: Node Code Formatter
+      uses: MarvinJWendt/run-node-formatter@1.5.2
