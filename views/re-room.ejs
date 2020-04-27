@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KhanChat</title>
+   <!-- Init App -->
+   <link rel="manifest" href="src/app/manifest.json">
+
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="application-name" content="Khiledin">
+   <meta name="apple-mobile-web-app-title" content="Khiledin">
+   <meta name="theme-color" content="#5e91f8">
+   <meta name="msapplication-navbutton-color" content="#5e91f8">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="msapplication-starturl" content="/">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- / Init App -->
+	<link rel="shootcut icon" href="<%- url -%>/src/images/icon.png">
+	<link rel="stylesheet" href="<%- url -%>/src/css/min/painel.css">
+	<link rel="stylesheet" href="<%- url -%>/src/css/min/emojione.css">
+	<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans|Raleway|Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="<%- url -%>/src/css/min/menu.css">
+	<link rel="stylesheet" href="<%- url -%>/src/css/min/mobile.css">
+	<link rel="stylesheet" type="text/css" href="<%- url -%>/src/css/min/spinner.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+</head>
+<body>
+
+	<div class="container" id="app">
+		<% include includes/menu.ejs %>
+	</div>
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+	<!-- <script src="<%- url -%>/socket.io/socket.io.js"></script>
+	<script src="<%- url -%>/src/js/min/emojione.js"></script>
+	<script src="<%- url -%>/src/js/min/clipboard.js"></script>
+	<script src="<%- url -%>/src/js/min/jquery.js"></script>
+	<script src="<%- url -%>/src/js/min/electron.js"></script>
+	<script src="<%- url -%>/src/js/min/chat.js"></script> -->
+	<script>
+
+		//const socket = io();
+		const user = <%- user -%>;
+		// Template
+		const chat = {
+			'url': "<%- url -%>/",
+			'sala_origin': '<%- sala -%>',
+			'sala': "sala-<%- sala -%>-",
+			'peoples': 1,
+			'messages': 0,
+			'peoples_add': ['Junior Bot'],
+			'end_message': '',
+			'messages_receive_user': [],
+			'colors': {
+				get message_me(){
+					if(localStorage.getItem('colors.message_me')){
+						return localStorage.getItem('colors.message_me');
+					}
+					return '#3498db';
+				},
+				get background(){
+					if(localStorage.getItem('colors.background')){
+						let tpl = `
+							background: url(${localStorage.getItem('colors.background')}) no-repeat center center fixed;
+							  background-size: cover;
+							  height: 70%;
+							  overflow: hidden;
+						`;
+						return tpl;
+					}
+					return false;
+				}
+			},
+			'lang': 'pt-br'
+		};
+
+	</script>
+	<script src="<%- url -%>/src/js/min/react.js"></script>
+	<!-- <script src="<%- url -%>/src/js/min/app.js"></script> -->
+
+</body>
+</html>

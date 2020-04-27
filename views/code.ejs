@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>Code File</title>
+   <!-- Init App -->
+   <link rel="manifest" href="src/app/manifest.json">
+
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="application-name" content="Khiledin">
+   <meta name="apple-mobile-web-app-title" content="Khiledin">
+   <meta name="theme-color" content="#5e91f8">
+   <meta name="msapplication-navbutton-color" content="#5e91f8">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="msapplication-starturl" content="/">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- / Init App -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/prism/1.6.0/themes/prism.css">
+	<style>
+		*{margin:0;padding:0;}
+		pre{
+			max-width: 100% !important;
+    		height: 93vh !important;
+    		padding: none !important;
+    		margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<pre><code><%- code -%></code></pre>
+	<script>
+		const patterns = {
+			"js": "language-javascript",
+			"css": "language-css",
+			"php": "language-php",
+			"html": "language-html",
+			"scss": "language-scss",
+			"sass": "language-sass",
+			"go": "language-go",
+			"py": "language-python",
+			"ts": "language-typescript",
+			"c": "language-c",
+			"rb": "language-ruby"
+		};
+		let ext = location.pathname.split('.').pop();
+		document.querySelector('code').className += patterns[ext];
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/prism/1.6.0/prism.js"></script>
+</body>
+</html>

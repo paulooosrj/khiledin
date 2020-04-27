@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <title>KhanChat</title>
+   <!-- Init App -->
+   <link rel="manifest" href="src/app/manifest.json">
+
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="application-name" content="Khiledin">
+   <meta name="apple-mobile-web-app-title" content="Khiledin">
+   <meta name="theme-color" content="#5e91f8">
+   <meta name="msapplication-navbutton-color" content="#5e91f8">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+   <meta name="msapplication-starturl" content="/">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- / Init App -->
+	<link rel="shootcut icon" href="src/images/icon.png">
+	<link rel="stylesheet" href="../src/css/min/view-bot.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="view">
+
+		<div class="box" khan-controller="index">
+			{{ $bots.map((bot) => (!bot.visible) ? $makeBot(bot) : '').join('') }}
+		</div>
+
+	</div>
+
+	<script src="../src/js/khan-framework.js"></script>
+	<script src="../src/js/min/bots.js"></script>
+	<script>
+
+		const App = khanApp.create();
+
+		App.$controller('index', function($scope){
+
+		    this.bots = bots;
+		    this.makeBot = function(bot){
+		    	return `
+					<div class="card" style="width: 20rem;height:70vh;">
+						<img class="card-img-top" src="${ bot.icon || "../src/images/new-bot-user.png" }">
+						<div class="card-block">
+							<h4 class="card-title">Bot: ${ bot.nome }</h4>
+							<p class="card-text" style="font-size:15px">
+								${ bot.desc || bot.nome + " nao tem descrição." }
+							</p>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+									${
+										(bot.on)
+										? 'Cluster: Online <span class="on"></span>'
+										: 'Cluster: Offline <span class="off"></span>'
+									}
+								</li>
+								<li class="list-group-item">
+									Tamanho: <code> ${ bot.size } kb</code>
+								</li>
+								<li class="list-group-item">
+									Eventos: <code>[${bot.eventos}];</code>
+								</li>
+							</ul>
+							<div class="card-block">
+								<a href="${bot.url}" class="card-link" target="__blank">Minha Pagina</a>
+							</div>
+						</div>
+					</div>
+		    	`;
+		    };
+
+		});
+
+	</script>
+
+
+</body>
+</html>
