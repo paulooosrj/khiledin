@@ -1,0 +1,92 @@
+.menu-toggle{
+  display: none;
+} 
+
+@media only screen and (max-width: 500px) {
+
+  	.no-mobile{ display: none !important; }
+  	.mobile{ display: block !important; }
+  	.menu-toggle>svg{ display: block !important; }
+  	.timeline{
+  		width: 100%;
+  	}
+
+    .menu{
+    	display: none;
+    	position: absolute !important;
+    	z-index: 50 !important;
+    	height: 100vh !important;
+    	width: 100% !important;
+    }
+    .menu-toggle{
+    	position: absolute;
+    	right: 0;
+    	margin-right: 5px;
+    	margin-top: -25px;
+    	border-radius: 100%;
+    	background: #3498db;
+    	height: 50px;
+   	 	width: 50px;
+   	 	display: flex !important;
+   	 	justify-content: center;
+   	 	align-items: center;
+   	 	color: #fff;
+   	 	cursor: pointer;
+   	 	z-index: 100;
+    }
+    .messages{
+    	height: 75vh;
+    }
+    .message {
+    	max-width: 100%;
+      display: flex;
+      justify-content: center;
+    	margin: 0;
+	}
+	span.arrow{ margin-left: 0px !important; }
+	.user>img{
+		margin-left: 0px !important;
+	}
+	.emit{height: 10vh}
+	.emit>.caixa{
+		width: 100%;
+		height: 100%;
+    border-radius: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .open-commands{
+      margin-left: 5px;
+      display: flex;
+      align-items: center;
+    }
+    .open-voice,.open-emoji{
+      height: 100%;
+      margin: 5px !important;
+      display: flex;
+      align-items: center;
+    }
+    .open-emoji{ margin-right: 10px !important; }
+	}
+  .emit .caixa svg{
+    padding-top: 0px;
+    padding-left: 5px;
+  }
+	.emit>.caixa>input{
+		width: 60%;
+    padding-left: 0;
+	}
+	.commands{
+		width: 100% !important;
+    bottom: 10vh !important;
+    margin-left: 0px;
+	}
+	.emojis{
+		width: 100% !important;
+    	bottom: 10vh !important;
+    	left: 0 !important;
+	}
+  .helped .help-item{
+    width: 90%;
+  }
+}

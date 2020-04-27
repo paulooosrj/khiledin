@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="content-language" content="pt-br, en-US, fr" />
+  <meta name="copyright" content="© 2018 PaulaoDev" />
+  <meta name="description" content="Chat simples porem com novas tecnologias proporcionando um melhor conforto de uso."/>
+  <meta name="keywords" content="chat moderno, chat, khanchat, PaulaoDev, Khanchat, khanchat paulaodev"/>
+  <meta name="rating" content="general"/>
+  <meta name="robots" content="all"/>
+  <!-- END CACHE -->
+  <!-- Init App -->
+  <link rel="manifest" href="src/app/manifest.json">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Khiledin">
+  <meta name="apple-mobile-web-app-title" content="Khiledin">
+  <meta name="theme-color" content="#5e91f8">
+  <meta name="msapplication-navbutton-color" content="#5e91f8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- / Init App -->
+  <title>Khiledin Chat</title>
+  <link rel="shootcut icon" href="src/images/icon.png">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Pacifico">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="src/css/min/login.css">
+</head>
+<body class="login-body">
+
+  <% include includes/login.ejs %>
+
+
+  <!--
+
+    <script src="src/js/min/jquery.js" defer></script>
+    <script src="src/js/min/materialize.js" defer></script>
+    <script src="src/js/min/electron.js" defer></script>
+
+    <script src="http://materializecss.com/bin/materialize.js"></script>
+
+
+  -->
+
+  <script src="src/js/vue.js"></script>
+  <script src="src/js/min/login.js"></script>
+  <!-- WebApp  -->
+  <script>
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('src/js/serviceWorker.js')
+    }
+  </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+</html>
