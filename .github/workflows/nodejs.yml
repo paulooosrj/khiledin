@@ -34,9 +34,6 @@ jobs:
             node-version: ${{ matrix.node-version }}
             name: audit
             path: build/artifact
-     
-      - name: Node Code Formatter
-        uses: MarvinJWendt/run-node-formatter@1.5.2
         
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.2
