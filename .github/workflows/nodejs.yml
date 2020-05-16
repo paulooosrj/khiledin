@@ -16,25 +16,38 @@ jobs:
       matrix:
         node-version: [10.x]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v1
-      - uses: actions/upload-artifact@v1
-      - uses: MarvinJWendt/run-node-formatter@1.5.2
-      - uses: actions/setup-node@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        with:
-          node-version: ${{ matrix.node-version }}
-          name: audit
-          path: build/artifact
-      - run: npm install
-        env:
-          CI: true
-      - name: Cache Node.js modules
-        with:
+      - name: Git checkout
+        uses: actions/checkout@v2
+        
+      - name: Cache
+        uses: actions/cache@v1.2.0
+        with: 
           path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
-      - name: Artifact
-      - run: mkdir -p build/artifact && npm audit --json > build/artifact/audit.json
+            
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+            node-version: ${{ matrix.node-version }}
+            name: audit
+            path: build/artifact
+     
+      - name: Node Code Formatter
+        uses: MarvinJWendt/run-node-formatter@1.5.2
+        
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{ matrix.node-version }}
+ 
+      - name: npm install, build, and test
+        run: |
+          npm ci
+          npm install
+          mkdir -p build/artifact && npm audit --json > build/artifact/audit.json
+          npm start
+        env:
+          CI: true
