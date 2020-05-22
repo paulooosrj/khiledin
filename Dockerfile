@@ -10,10 +10,10 @@ RUN apk add g++ make python
 
 RUN apk update && apk add --no-cache git shadow
 
-RUN npm install -g node-sass postcss-cli autoprefixer watch --unsafe-perm
-
-RUN npm install --unsafe-perm
+RUN npm prune
+RUN npm audit fix --force
 RUN npm install -g concurrently nodemon webpack
+RUN npm install --unsafe-perm
 
 # Copy app source code
 COPY . .
