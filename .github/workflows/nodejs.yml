@@ -36,7 +36,7 @@ jobs:
  
       - name: npm install, build, and test
         run: |
-          npm audit --json > build/artifact/audit.json
+          docker-compose up -d
         env:
           CI: true
 
