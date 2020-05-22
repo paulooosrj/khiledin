@@ -37,6 +37,7 @@ jobs:
       - name: npm install, build, and test
         run: |
           docker-compose up -d
+          docker run --network container:chat appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3000/
         env:
           CI: true
 
