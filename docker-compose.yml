@@ -6,7 +6,7 @@ services:
         - "3000:3000"
     environment:
         - MONGO_URL='mongodb://mongo:27017/admin'
-        - URL='https://3000-dot-6910560-dot-devshell.appspot.com/'
+        - URL='https://3000-dot-6910560-dot-devshell.appspot.com'
     volumes:
         - .:/usr/app
     depends_on:
