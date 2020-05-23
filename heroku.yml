@@ -1,0 +1,6 @@
+build:
+  docker:
+    web: Dockerfile
+  config:
+    MONGO_URL: 'mongodb://paulaodev:paulo2017@ds157653.mlab.com:57653/khanml'
+    URL: 'https://evening-meadow-90633.herokuapp.com/'

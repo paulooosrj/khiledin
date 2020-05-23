@@ -9,8 +9,6 @@ const session = require('express-session');
 let MongoStore = require('connect-mongo');
 const db = require('./database/index');
 
-console.log(process.env.MONGO_URL)
-
 var events = require('events');
 global.event = new events.EventEmitter();
 global.log = require('signale');
