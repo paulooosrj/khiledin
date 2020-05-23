@@ -21,14 +21,12 @@ jobs:
         
       - name: Cache
         uses: actions/cache@v1.2.0
-        with: 
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('npm-shrinkwrap.json') }}
           restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-            
-        
+            node_modules-: 
+  
       - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.2
         with:
