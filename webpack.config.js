@@ -26,7 +26,10 @@ module.exports = {
     module: {
         rules: [{
             test: /\.(js)$/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            query: {
+                plugins: ['transform-decorators-legacy' ]
+            }
         }]
     }
 };

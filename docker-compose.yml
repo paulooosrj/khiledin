@@ -3,10 +3,11 @@ services:
   chat:
     build: .
     ports:
-        - "3000:3000"
+        - "5000:5000"
     environment:
         - MONGO_URL='mongodb://mongo:27017/admin'
-        - URL='https://3000-dot-6910560-dot-devshell.appspot.com'
+        - URL=https://5000-cs-361250610342-default.us-east1.cloudshell.dev
+        - PORT=5000
     volumes:
         - .:/usr/app
     depends_on:

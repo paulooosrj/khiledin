@@ -7,13 +7,12 @@ WORKDIR /usr/app
 COPY package*.json ./
 
 RUN npm prune
-RUN npm install -g concurrently nodemon webpack --no-progress
 RUN npm install --no-progress
 
 # Copy app source code
 COPY . .
 
 #Expose port and start application
-EXPOSE 3000
+EXPOSE 5000
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "dev" ]
