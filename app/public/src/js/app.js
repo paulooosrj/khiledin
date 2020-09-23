@@ -9,21 +9,29 @@ const {
 	get_user,
 	get_horario
 } = require('./modules/utils');
+const { DocumentEvent } = require("./components/decorators/document.js")
 
-// window.bot = require('make-bot');
-if (location.protocol === 'https:'){
- 	location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
-}
+//window.bot = require('make-bot');
+// if (location.protocol === 'https:'){
+//  	location.href = 'http:' + window.location.href.substring(window.location.protocol.length);
+// }
+
+console.log("AQUI!!");   
 
 var status_write = false;
 
-
-document.addEventListener("DOMContentLoaded", () => {
-
+@DocumentEvent('DOMContentLoaded')
+function loadPage(){
 	document.querySelector('.load').style.display = "none";
-  $(".menu-toggle").css("cssText", "display: flex !important;");
+    $(".menu-toggle").css("cssText", "display: flex !important;");
+}
 
-});
+// document.addEventListener("DOMContentLoaded", () => {
+
+// 	document.querySelector('.load').style.display = "none";
+//   $(".menu-toggle").css("cssText", "display: flex !important;");
+
+// });
 
 window.onunload = function () {
   const body = {

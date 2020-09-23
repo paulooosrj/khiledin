@@ -18,7 +18,7 @@ class AppService {
 
     const {
       params: {
-        sala = ''
+        sala = 'global'
       }
     } = req;
 
@@ -53,18 +53,24 @@ class AppService {
       }
     } = req;
 
+    console.log({ user, sala, fullUrl })
+ 
     if (user) {
+
+      console.log("AQUI!!")
 
       let {
         username: nome,
         _id: user_id,
         icon
       } = user;
+
       const userRender = JSON.stringify({
         nome,
         user_id,
         icon
       });
+
       res.render('room', {
         bots,
         user: userRender,
